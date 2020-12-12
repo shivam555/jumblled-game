@@ -1,0 +1,42 @@
+from tkinter import*
+from tkinter import messagebox
+import random
+answers=["python","java","swift","canada","india","america","london","delhi","germny","bhutan","russia","australia","brazil","beijing","mexico","mumbai","tokyo","cario","japan","france","singapore","iran","indonacia","italy","swadon"]
+words=["nptoyh","avja","tfiws","adanac","aidni","acirema","nodnol","ihled","ynmreg","natuhb","aissur","ailartsua","lizarb","gnijieb","ocixem","iabmum","oykot","oirac","napaj","ecnarf","eropagnis","nari","acianodni","ylati","nodaws"]
+num=random.randrange(0,25,1)
+def res():
+    global num,words,answers
+    num=random.randrange(0,25,1)
+    lb1.config(text=words[num])
+    e1.delete(0,END)
+def default():
+    global num
+    global words
+    global answers
+    lb1.config(text=words[num])
+    
+def checkans():
+    global num,words,answers
+    if e1.get()==answers[num]:
+        messagebox.showinfo("succes","correct answer")
+        res()
+    else:
+        messagebox.showerror("error","wrong answer")
+        e1.delete(0,END)
+root=Tk()
+root.geometry("350x400+400+300")
+root.title("jumblled")
+root.config(background="black")
+lb1=Label(root,text="your word",font=("verdana",18),bg="black",fg="white")
+lb1.pack(pady=30)
+ans1=StringVar()
+
+e1=Entry(root,font=("vardana",16),textvariable=ans1)
+e1.pack()
+btncheck=Button(root,text="check",font=("Comic sans ms",16),bg="white",fg="black",width=8,relief=GROOVE,command=checkans)
+btncheck.pack(pady=40)
+
+btncheck1=Button(root,text="Reset",font=("Comic sans ms",16),bg="white",fg="black",width=8,relief=GROOVE,command=res)
+btncheck1.pack()
+default()
+root.mainloop()
